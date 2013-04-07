@@ -1,6 +1,6 @@
 Name:		brewtarget
 Version:	2.0.1
-Release:	4%{?dist}
+Release:	1%{?dist}
 Summary:	An open source beer recipe creation tool
 Group:		Applications/Productivity
 License:	GPLv3 and WTFPL and LGPLv2
