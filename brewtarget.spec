@@ -1,18 +1,28 @@
-Name:		brewtarget
-Version:	2.0.1
-Release:	1%{?dist}
-Summary:	An open source beer recipe creation tool
-Group:		Applications/Productivity
-License:	GPLv3 and WTFPL and LGPLv2
-URL:		http://www.brewtarget.org
-Source0:        https://launchpad.net/brewtarget/trunk/%{version}/+download/brewtarget_%{version}.orig.tar.gz
+%define is_suse 0%{?suse_version}
 
-BuildRequires:	cmake
-BuildRequires:	qt-devel
-BuildRequires:	qt-webkit-devel
-BuildRequires:	phonon-devel
-BuildRequires:	desktop-file-utils
-BuildRequires:	sqlite
+Name:    brewtarget
+Version: 2.0.2
+Release: 1%{?dist}
+Summary: An open source beer recipe creation tool
+Group:   Applications/Productivity
+License: GPLv3 and WTFPL and LGPLv2
+URL:     http://www.brewtarget.org
+Source0: https://launchpad.net/brewtarget/trunk/%{version}/+download/brewtarget_%{version}.orig.tar.gz
+
+BuildRequires: cmake
+BuildRequires: desktop-file-utils
+BuildRequires: sqlite
+BuildRequires: phonon-devel
+%if %{is_suse}
+BuildRequires: update-desktop-files
+BuildRequires: libqt4-devel
+BuildRequires: libQtWebKit-devel
+%else
+BuildRequires: desktop-file-utils
+BuildRequires: qt-devel
+BuildRequires: qt-webkit-devel
+%endif
+
 %description
 Brewtarget is an open source beer recipe creation tool. It automatically 
 calculates color, bitterness, and other parameters for you while you drag and 
@@ -24,13 +34,17 @@ It also can export and import recipes in BeerXML.
 %setup -q
 
 %build
-%cmake -DDO_RELEASE_BUILD:BOOL=ON 
+%cmake -DDOCDIR="%{_defaultdocdir}/%{name}" .
 make %{?_smp_mflags} 
 
 %install
 make VERBOSE=1 INSTALL="install -p" CP="cp -p" DESTDIR=%{buildroot} install
-/usr/bin/install -m 0644 -Dp doc/brewtarget.1 %buildroot%{_mandir}/man1/brewtarget.1
-desktop-file-validate %buildroot%{_datadir}/applications/%{name}.desktop
+/usr/bin/install -m 0644 -Dp doc/brewtarget.1 %buildroot/%{_mandir}/man1/brewtarget.1
+%if %{is_suse}
+%suse_update_desktop_file -r %{name} Engineering
+%else
+desktop-file-validate %buildroot/%{_datadir}/applications/%{name}.desktop
+%endif
 
 %files
 %{_bindir}/%{name}
@@ -38,9 +52,15 @@ desktop-file-validate %buildroot%{_datadir}/applications/%{name}.desktop
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/icons/%{name}
 %{_mandir}/man1/brewtarget.1*
-%doc README COPYRIGHT COPYING.GPLv3 COPYING.WTFPL doc/manual/index.html 
+%{_defaultdocdir}/%{name}/README.markdown
+%{_defaultdocdir}/%{name}/COPYRIGHT
+%doc COPYING.GPLv3 COPYING.WTFPL 
 
 %changelog
+* Sun Jan 12 2014 Philip Lee <rocketman768@gmail.com> 2.0.2-1
+- Added SUSE support.
+- Manual is now installed in datadir. Removed from docs.
+
 * Sat Apr 06 2013 Philip Lee <rocketman768@gmail.com> 2.0.1-1
 - Removed all patches since they have been integrated upstream.
 - Changed upstream source location.
