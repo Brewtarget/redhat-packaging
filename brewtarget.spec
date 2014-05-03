@@ -7,7 +7,7 @@ Summary: An open source beer recipe creation tool
 Group:   Applications/Productivity
 License: GPLv3 and WTFPL and LGPLv2
 URL:     http://www.brewtarget.org
-Source0: https://launchpad.net/brewtarget/trunk/%{version}/+download/brewtarget_%{version}.orig.tar.gz
+Source0: https://launchpad.net/brewtarget/trunk/%{version}/+download/brewtarget_%{version}.orig.tar.xz
 
 BuildRequires: cmake
 BuildRequires: desktop-file-utils
@@ -58,7 +58,7 @@ desktop-file-validate %buildroot/%{_datadir}/applications/%{name}.desktop
 
 %changelog
 * Sun May 03 2014 Philip Lee <rocketman768@gmail.com> 2.0.3-1
-- New upstream release 2.0.3.
+- Changed package source to .xz format.
 
 * Sun Jan 12 2014 Philip Lee <rocketman768@gmail.com> 2.0.2-1
 - Added SUSE support.
