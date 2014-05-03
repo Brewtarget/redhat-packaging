@@ -1,7 +1,7 @@
 %define is_suse 0%{?suse_version}
 
 Name:    brewtarget
-Version: 2.0.2
+Version: 2.0.3
 Release: 1%{?dist}
 Summary: An open source beer recipe creation tool
 Group:   Applications/Productivity
@@ -57,6 +57,9 @@ desktop-file-validate %buildroot/%{_datadir}/applications/%{name}.desktop
 %doc COPYING.GPLv3 COPYING.WTFPL 
 
 %changelog
+* Sun May 03 2014 Philip Lee <rocketman768@gmail.com> 2.0.3-1
+- New upstream release 2.0.3.
+
 * Sun Jan 12 2014 Philip Lee <rocketman768@gmail.com> 2.0.2-1
 - Added SUSE support.
 - Manual is now installed in datadir. Removed from docs.
