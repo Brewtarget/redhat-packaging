@@ -1,7 +1,7 @@
 %define is_suse 0%{?suse_version}
 
 Name:    brewtarget
-Version: 2.0.3
+Version: 2.1.0
 Release: 1%{?dist}
 Summary: An open source beer recipe creation tool
 Group:   Applications/Productivity
@@ -11,7 +11,6 @@ Source0: https://launchpad.net/brewtarget/trunk/%{version}/+download/brewtarget_
 
 BuildRequires: cmake
 BuildRequires: desktop-file-utils
-BuildRequires: sqlite
 BuildRequires: phonon-devel
 %if %{is_suse}
 BuildRequires: update-desktop-files
@@ -57,6 +56,9 @@ desktop-file-validate %buildroot/%{_datadir}/applications/%{name}.desktop
 %doc COPYING.GPLv3 COPYING.WTFPL 
 
 %changelog
+* Sun Sep 14 2014 Philip Lee <rocketman768@gmail.com> 2.1.0-1
+- Removed sqlite3 build dependency
+
 * Sun May 03 2014 Philip Lee <rocketman768@gmail.com> 2.0.3-1
 - Changed package source to .xz format.
 
