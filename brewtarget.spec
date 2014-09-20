@@ -49,7 +49,7 @@ desktop-file-validate %buildroot/%{_datadir}/applications/%{name}.desktop
 %{_bindir}/%{name}
 %{_datadir}/%{name}
 %{_datadir}/applications/%{name}.desktop
-%{_datadir}/icons/%{name}
+%{_datadir}/icons/hicolor/scalable/apps/%{name}.svg
 %{_mandir}/man1/brewtarget.1*
 %{_defaultdocdir}/%{name}/README.markdown
 %{_defaultdocdir}/%{name}/COPYRIGHT
