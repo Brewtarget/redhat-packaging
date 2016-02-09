@@ -1,7 +1,7 @@
 %define is_suse 0%{?suse_version}
 
 Name:    brewtarget
-Version: 2.1.0
+Version: 2.3.0
 Release: 1%{?dist}
 Summary: An open source beer recipe creation tool
 Group:   Applications/Productivity
@@ -18,9 +18,14 @@ BuildRequires: libqt4-devel
 BuildRequires: libQtWebKit-devel
 %else
 BuildRequires: desktop-file-utils
-BuildRequires: qt-devel
-BuildRequires: qt-webkit-devel
+BuildRequires: qt5-qtbase-devel
+BuildRequires: qt5-qtdeclarative-devel
+BuildRequires: qt5-qtwebkit-devel
+BuildRequires: qt5-qtmultimedia-devel
+BuildRequires: qt5-qttools-devel
 %endif
+
+Requires: qt5-qtsvg
 
 %description
 Brewtarget is an open source beer recipe creation tool. It automatically 
@@ -53,13 +58,17 @@ desktop-file-validate %buildroot/%{_datadir}/applications/%{name}.desktop
 %{_mandir}/man1/brewtarget.1*
 %{_defaultdocdir}/%{name}/README.markdown
 %{_defaultdocdir}/%{name}/COPYRIGHT
+%{_defaultdocdir}/%{name}/changelog.gz
 %doc COPYING.GPLv3 COPYING.WTFPL 
 
 %changelog
+* Mon Feb 08 2016 Philip Lee <rocketman768@gmail.com> 2.3.0-1
+- New upstream release
+
 * Sun Sep 14 2014 Philip Lee <rocketman768@gmail.com> 2.1.0-1
 - Removed sqlite3 build dependency
 
-* Sun May 03 2014 Philip Lee <rocketman768@gmail.com> 2.0.3-1
+* Sun May 04 2014 Philip Lee <rocketman768@gmail.com> 2.0.3-1
 - Changed package source to .xz format.
 
 * Sun Jan 12 2014 Philip Lee <rocketman768@gmail.com> 2.0.2-1
